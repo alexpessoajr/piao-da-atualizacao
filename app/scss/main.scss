@@ -1,0 +1,79 @@
+$face-size: 260px;
+$sides: 9;
+$side-translateZ: 370px;
+$duration: 5s;
+$image-border: 5px;
+body {
+    background: rgba(255, 240, 59, 0.19);
+}
+
+h1 {
+    text-align: center;
+    padding: 50px;
+}
+
+.piao {
+    background: black;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 0 20px #F44336, 0 0 0 30px #ec3527;
+    &:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        border-radius: 50%;
+    }
+}
+
+.ring {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    margin: auto;
+    height: $face-size + $image-border;
+    width: $face-size + $image-border;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    animation: y-spin $duration linear infinite;
+}
+
+.face {
+    border: 0 solid white;
+    position: absolute;
+    width: $face-size;
+    height: $face-size;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: $image-border solid #fff;
+    $rotate: 0;
+    @for $i from 1 through $sides {
+        &.face-#{$i} {
+            transform: rotateY(#{$rotate}deg) translateZ($side-translateZ);
+        }
+        $rotate: $rotate+40;
+    }
+    img {
+        width: $face-size;
+        height: $face-size;
+        object-fit: cover;
+    }
+}
+
+@keyframes y-spin {
+    from {
+        transform: rotateY(0deg)
+    }
+    to {
+        transform: rotateY(360deg)
+    }
+}
