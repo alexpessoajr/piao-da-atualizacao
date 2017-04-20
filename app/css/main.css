@@ -1,75 +1,184 @@
-body {
-  background: rgba(255, 240, 59, 0.19); }
-
-h1 {
-  text-align: center;
-  padding: 50px; }
-
-.piao {
-  background: black;
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 0 20px #F44336, 0 0 0 30px #ec3527; }
-  .piao:after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    right: 0;
-    border-radius: 50%; }
-
-.ring {
+@import url("https://fonts.googleapis.com/css?family=Passion+One");
+.mask, .mask .mask__inner, .piao, .ring, .face, .bolts, .bolts .bolt {
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   position: absolute;
-  margin: auto;
-  height: 265px;
-  width: 265px;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  animation: y-spin 5s linear infinite; }
+  margin: auto; }
 
-.face {
-  border: 0 solid white;
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.mask {
+  width: 430px;
+  height: 430px;
+  background-color: #000;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 10px #ad0000, 0 0 0 40px #c80000, 0 0 0 50px #e20101, 0 0 10px 50px #000, 0 0 60px 60px rgba(0, 0, 0, 0.4); }
+  .mask .mask__inner {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 10px rgba(0, 0, 0, 0.6) inset, 0 0 70px 10px rgba(0, 0, 0, 0.6) inset; }
+
+.title {
+  width: 430px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFC107;
+  border-radius: 5px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+  transform: rotate(-5deg);
+  color: #ad6700;
   position: absolute;
-  width: 260px;
-  height: 260px;
+  top: 50px;
   left: 0;
   right: 0;
   margin: auto;
-  border: 5px solid #fff; }
+  font-family: 'Passion One', cursive;
+  font-weight: normal; }
+
+.piao {
+  width: 140px;
+  height: 300px;
+  perspective: 800;
+  -webkit-perspective: 800; }
+
+.ring {
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  animation: rotate 20s ease-in-out forwards; }
+
+.face {
+  width: calc(100% - 4px);
+  height: calc(100% - 8px);
+  border: 4px solid #fff;
+  border-radius: 2px; }
   .face.face-1 {
-    transform: rotateY(0deg) translateZ(370px); }
+    transform: rotateY(40deg) translateZ(195px); }
   .face.face-2 {
-    transform: rotateY(40deg) translateZ(370px); }
+    transform: rotateY(80deg) translateZ(195px); }
   .face.face-3 {
-    transform: rotateY(80deg) translateZ(370px); }
+    transform: rotateY(120deg) translateZ(195px); }
   .face.face-4 {
-    transform: rotateY(120deg) translateZ(370px); }
+    transform: rotateY(160deg) translateZ(195px); }
   .face.face-5 {
-    transform: rotateY(160deg) translateZ(370px); }
+    transform: rotateY(200deg) translateZ(195px); }
   .face.face-6 {
-    transform: rotateY(200deg) translateZ(370px); }
+    transform: rotateY(240deg) translateZ(195px); }
   .face.face-7 {
-    transform: rotateY(240deg) translateZ(370px); }
+    transform: rotateY(280deg) translateZ(195px); }
   .face.face-8 {
-    transform: rotateY(280deg) translateZ(370px); }
+    transform: rotateY(320deg) translateZ(195px); }
   .face.face-9 {
-    transform: rotateY(320deg) translateZ(370px); }
+    transform: rotateY(360deg) translateZ(195px); }
   .face img {
-    width: 260px;
-    height: 260px;
+    width: 100%;
+    height: 100%;
     object-fit: cover; }
 
-@keyframes y-spin {
-  from {
+.bolts {
+  width: 100%;
+  height: 100%; }
+  .bolts .bolt {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #000, transparent); }
+    .bolts .bolt:nth-of-type(1) {
+      transform: rotate(5deg); }
+    .bolts .bolt:nth-of-type(2) {
+      transform: rotate(10deg); }
+    .bolts .bolt:nth-of-type(3) {
+      transform: rotate(15deg); }
+    .bolts .bolt:nth-of-type(4) {
+      transform: rotate(20deg); }
+    .bolts .bolt:nth-of-type(5) {
+      transform: rotate(25deg); }
+    .bolts .bolt:nth-of-type(6) {
+      transform: rotate(30deg); }
+    .bolts .bolt:nth-of-type(7) {
+      transform: rotate(35deg); }
+    .bolts .bolt:nth-of-type(8) {
+      transform: rotate(40deg); }
+    .bolts .bolt:nth-of-type(9) {
+      transform: rotate(45deg); }
+    .bolts .bolt:nth-of-type(10) {
+      transform: rotate(50deg); }
+    .bolts .bolt:nth-of-type(11) {
+      transform: rotate(55deg); }
+    .bolts .bolt:nth-of-type(12) {
+      transform: rotate(60deg); }
+    .bolts .bolt:nth-of-type(13) {
+      transform: rotate(65deg); }
+    .bolts .bolt:nth-of-type(14) {
+      transform: rotate(70deg); }
+    .bolts .bolt:nth-of-type(15) {
+      transform: rotate(75deg); }
+    .bolts .bolt:nth-of-type(16) {
+      transform: rotate(80deg); }
+    .bolts .bolt:nth-of-type(17) {
+      transform: rotate(85deg); }
+    .bolts .bolt:nth-of-type(18) {
+      transform: rotate(90deg); }
+    .bolts .bolt:nth-of-type(19) {
+      transform: rotate(95deg); }
+    .bolts .bolt:nth-of-type(20) {
+      transform: rotate(100deg); }
+    .bolts .bolt:nth-of-type(21) {
+      transform: rotate(105deg); }
+    .bolts .bolt:nth-of-type(22) {
+      transform: rotate(110deg); }
+    .bolts .bolt:nth-of-type(23) {
+      transform: rotate(115deg); }
+    .bolts .bolt:nth-of-type(24) {
+      transform: rotate(120deg); }
+    .bolts .bolt:nth-of-type(25) {
+      transform: rotate(125deg); }
+    .bolts .bolt:nth-of-type(26) {
+      transform: rotate(130deg); }
+    .bolts .bolt:nth-of-type(27) {
+      transform: rotate(135deg); }
+    .bolts .bolt:nth-of-type(28) {
+      transform: rotate(140deg); }
+    .bolts .bolt:nth-of-type(29) {
+      transform: rotate(145deg); }
+    .bolts .bolt:nth-of-type(30) {
+      transform: rotate(150deg); }
+    .bolts .bolt:nth-of-type(31) {
+      transform: rotate(155deg); }
+    .bolts .bolt:nth-of-type(32) {
+      transform: rotate(160deg); }
+    .bolts .bolt:nth-of-type(33) {
+      transform: rotate(165deg); }
+    .bolts .bolt:nth-of-type(34) {
+      transform: rotate(170deg); }
+    .bolts .bolt:nth-of-type(35) {
+      transform: rotate(175deg); }
+    .bolts .bolt:nth-of-type(36) {
+      transform: rotate(180deg); }
+    .bolts .bolt:nth-of-type(37) {
+      transform: rotate(185deg); }
+    .bolts .bolt:nth-of-type(38) {
+      transform: rotate(190deg); }
+    .bolts .bolt:nth-of-type(39) {
+      transform: rotate(195deg); }
+    .bolts .bolt:nth-of-type(40) {
+      transform: rotate(200deg); }
+
+@keyframes rotate {
+  0% {
     transform: rotateY(0deg); }
-  to {
-    transform: rotateY(360deg); } }
+  90% {
+    transform: rotateY(-1785deg); }
+  100% {
+    transform: rotateY(-1760deg); } }

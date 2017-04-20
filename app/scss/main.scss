@@ -1,79 +1,122 @@
-$face-size: 260px;
+@import url('https://fonts.googleapis.com/css?family=Passion+One');
 $sides: 9;
-$side-translateZ: 370px;
-$duration: 5s;
-$image-border: 5px;
-body {
-    background: rgba(255, 240, 59, 0.19);
-}
-
-h1 {
-    text-align: center;
-    padding: 50px;
-}
-
-.piao {
-    background: black;
-    border-radius: 50%;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 0 20px #F44336, 0 0 0 30px #ec3527;
-    &:after {
-        content: "";
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        right: 0;
-        border-radius: 50%;
-    }
-}
-
-.ring {
+$rotate-face: 360 / $sides;
+//
+%absolute-centered {
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     position: absolute;
     margin: auto;
-    height: $face-size + $image-border;
-    width: $face-size + $image-border;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    animation: y-spin $duration linear infinite;
 }
 
-.face {
-    border: 0 solid white;
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.mask {
+    width: 430px;
+    height: 430px;
+    background-color: #000;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 10px rgb(173, 0, 0), 0 0 0 40px rgba(200, 0, 0, 1), 0 0 0 50px rgb(226, 1, 1), 0 0 10px 50px #000, 0 0 60px 60px rgba(0, 0, 0, 0.4);
+    @extend %absolute-centered;
+    .mask__inner {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 8px 10px rgba(0, 0, 0, .6) inset, 0 0 70px 10px rgba(0, 0, 0, .6) inset;
+        @extend %absolute-centered;
+    }
+}
+
+.title {
+    width: 430px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFC107;
+    border-radius: 5px;
+    box-shadow: 5px 5px rgba(0, 0, 0, .1);
+    transform: rotate(-5deg);
+    color: #ad6700;
     position: absolute;
-    width: $face-size;
-    height: $face-size;
+    top: 50px;
     left: 0;
     right: 0;
     margin: auto;
-    border: $image-border solid #fff;
-    $rotate: 0;
+    font-family: 'Passion One', cursive;
+    font-weight: normal;
+}
+
+.piao {
+    width: 140px;
+    height: 300px;
+    perspective: 800;
+    -webkit-perspective: 800;
+    @extend %absolute-centered;
+}
+
+.ring {
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    animation: rotate 20s ease-in-out forwards;
+    @extend %absolute-centered;
+}
+
+.face {
+    width: calc(100% - 4px);
+    height: calc(100% - 8px);
+    border: 4px solid #fff;
+    border-radius: 2px;
+    @extend %absolute-centered;
     @for $i from 1 through $sides {
         &.face-#{$i} {
-            transform: rotateY(#{$rotate}deg) translateZ($side-translateZ);
+            transform: rotateY(#{$i*$rotate-face}deg) translateZ(195px);
         }
-        $rotate: $rotate+40;
     }
     img {
-        width: $face-size;
-        height: $face-size;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 }
 
-@keyframes y-spin {
-    from {
+$bolts: 40;
+.bolts {
+    width: 100%;
+    height: 100%;
+    @extend %absolute-centered;
+    .bolt {
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #000, transparent);
+        @extend %absolute-centered;
+        @for $i from 1 through $bolts {
+            &:nth-of-type(#{$i}) {
+                transform: rotate(#{$i * 5}deg)
+            }
+        }
+    }
+}
+
+@keyframes rotate {
+    0% {
         transform: rotateY(0deg)
     }
-    to {
-        transform: rotateY(360deg)
+    90% {
+        transform: rotateY(-1785deg)
+    }
+    100% {
+        transform: rotateY(-1760deg)
     }
 }
