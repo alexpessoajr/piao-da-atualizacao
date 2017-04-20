@@ -30,16 +30,16 @@ gulp.task('useref', function() {
         .pipe(useref())
         .pipe(gulpIf('*.js', uglify()))
         .pipe(gulpIf('*.css', cssnano()))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('docs'))
 })
 
 gulp.task('fonts', function() {
     return gulp.src('app/fonts/**/*')
-        .pipe(gulp.dest('dist/fonts'))
+        .pipe(gulp.dest('docs/fonts'))
 })
 
-gulp.task('clean:dist', function() {
-    return del.sync('dist');
+gulp.task('clean:docs', function() {
+    return del.sync('docs');
 })
 
 gulp.task('watch', ['browserSync', 'sass'], function() {
@@ -54,7 +54,7 @@ gulp.task('build', ['clean', 'sass', 'useref', 'fonts'], function() {
 
 //run 'gulp build' to build production mode
 gulp.task('build', function(callback) {
-    runSequence('clean:dist', ['sass', 'useref', 'fonts'],
+    runSequence('clean:docs', ['sass', 'useref', 'fonts'],
         callback
     )
 })
