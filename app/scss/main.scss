@@ -1,0 +1,202 @@
+//----------------------------------------------//
+//--SCSS Pião da Atualização by @interaminense--//
+//----------------------------------------------//
+@import url('https://fonts.googleapis.com/css?family=Passion+One');
+//variables
+$font-family: 'Passion One', cursive;
+$black: #000;
+$white: #fff;
+$title-bg: #FFC107;
+$sides: 9;
+$rotate-face: 360 / $sides;
+$piao-w: 140px;
+$piao-h: 300px;
+$mask-size: 430px;
+$mask-bg: $black;
+$mask-color: rgba(200, 0, 0, 1);
+$mask-shadow: 0 0 0 5px darken($mask-color, 5%), 0 0 0 40px $mask-color, 0 0 0 50px lighten($mask-color, 5%), 0 0 10px 50px #{$black}, 0 0 60px 60px rgba($black, .4);
+$mask-shadow-2: 0 0 8px 10px rgba($black, .6) inset, 0 0 70px 10px rgba($black, .6) inset;
+$perspective: 800px;
+$bolts: 36;
+$bolt-bg: linear-gradient(90deg, transparent, rgba($black, .4), transparent);
+$bolt-w: 100%;
+$bolt-h: 6px;
+$bolt-rotate: 5;
+$animation-delay: 20s;
+$animation-iteration-count: forwards;
+$animation-timing-function: ease-in-out;
+$face-w: calc(100% - 4px);
+$face-h: calc(100% - 8px);
+$face-border: 4px solid $white;
+$face-translate-z: 195px;
+$footer-color: #3F51B5;
+//extends
+%absolute-centered {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    margin: auto;
+}
+
+%circle {
+    border-radius: 50%;
+}
+
+%full-screen {
+    width: 100%;
+    height: 100%;
+}
+
+%flex-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+//mixins
+@mixin animation($rotate) {
+    animation: $rotate $animation-delay $animation-timing-function $animation-iteration-count;
+}
+//body
+body {
+    margin: 0;
+    overflow: hidden;
+    @extend %full-screen;
+}
+
+.mask {
+    width: $mask-size;
+    height: $mask-size;
+    background-color: $mask-bg;
+    overflow: hidden;
+    box-shadow: $mask-shadow;
+    @extend %circle;
+    @extend %absolute-centered;
+    .mask__inner {
+        content: "";
+        box-shadow: $mask-shadow-2;
+        @extend %full-screen;
+        @extend %circle;
+        @extend %absolute-centered;
+    }
+}
+
+.title {
+    width: $mask-size;
+    height: 60px;
+    background-color: $title-bg;
+    border-radius: 5px;
+    box-shadow: 5px 5px rgba($black, .1);
+    transform: rotate(-5deg);
+    color: darken($title-bg, 25%);
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-family: $font-family;
+    font-weight: normal;
+    @extend %flex-centered;
+}
+
+.piao {
+    width: $piao-w;
+    height: $piao-h;
+    perspective: $perspective;
+    -webkit-perspective: $perspective;
+    @extend %absolute-centered;
+}
+
+.ring {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    @include animation(rotate);
+    @extend %full-screen;
+    @extend %absolute-centered;
+}
+
+.face {
+    width: $face-w;
+    height: $face-h;
+    border: $face-border;
+    border-radius: 2px;
+    @extend %absolute-centered;
+    @for $i from 1 through $sides {
+        &.face-#{$i} {
+            transform: rotateY(#{$i*$rotate-face}deg) translateZ($face-translate-z);
+        }
+    }
+    img {
+        object-fit: cover;
+        @extend %full-screen;
+    }
+}
+
+.bolts {
+    @extend %full-screen;
+    @extend %absolute-centered;
+    .bolt {
+        width: $bolt-w;
+        height: $bolt-h;
+        background: $bolt-bg;
+        @extend %absolute-centered;
+        @for $i from 1 through $bolts {
+            &:nth-of-type(#{$i}) {
+                transform: rotate(#{$i * $bolt-rotate}deg)
+            }
+        }
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 30px);
+    padding: 15px;
+    background-color: rgba($white, .6);
+    font-family: $font-family;
+    color: $footer-color;
+    a {
+        color: darken($footer-color, 20%);
+        text-decoration: none;
+    }
+}
+
+//css fork this project
+.github-corner:hover .octo-arm{
+    animation: octocat-wave 560ms ease-in-out;
+}
+@media (max-width: 500px){
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
+}
+
+//keyframes
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg)
+    }
+    90% {
+        transform: rotateY(-1985deg)
+    }
+    100% {
+        transform: rotateY(-1760deg)
+    }
+}
+
+@keyframes octocat-wave{
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
